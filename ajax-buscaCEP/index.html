@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+		function consultaCEP(){
+			
+			var cep = document.getElementById("cep").value; // PEGA O VALOR DO INPUT CEP
+			//log("O VALOR DIGITADO DO CEP É "+ cep);
+			var url = "http://viacep.com.br/ws/"+ cep +"/json"; // ADICIONA O CEP NO LINK
+			//log("A URL COM O VALOR DIGITADO É "+ url);
+
+			// FUNÇÃO PARA BUSCAR DADOS DA URL
+			$.ajax({
+				url:  url, //pega a URL
+				type: "GET", // METODO DE PEGAR OS DADOS
+				success: function(response){ // SE DER SUCESSO, RETORNA O VALOR
+					log(response); // RETORNA TUDO
+					//log("Retorna so Logradouro" +response.logradouro); 
+
+					document.getElementById("logradouro").innerHTML=response.logradouro;
+					document.getElementById("bairro").innerHTML=response.bairro;
+					document.getElementById("localidade").innerHTML=response.localidade ;
+
+				}
+
+			});
+			
+		}
+
+		function log(e){
+			console.log(e);
+		}
+
+
+	</script>
+</head>
+<body>
+	<p>Usamos o link viacep para buscar todas informações sobre o CEP -->  
+		<a href="http://viacep.com.br/ws/08141013/json" target="_blank" >http://viacep.com.br/ws/08141013/json </a>
+	</p>
+	<input id="cep" type="text" name=""> &nbsp; <button type="button" onclick="consultaCEP()"> Consultar </button>
+	<p id="logradouro"></p>
+	<p id="bairro"></p>
+	<p id="localidade"></p>
+	
+</body>
+</html>
