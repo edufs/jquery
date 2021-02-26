@@ -1,1 +1,1 @@
-# Exemplos praticos com Jquery
+# Exemplos praticos com JQuery
